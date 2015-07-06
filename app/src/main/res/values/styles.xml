@@ -1,0 +1,42 @@
+<resources>
+
+    <!-- Base application theme -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/RD</item>
+        <item name="colorPrimaryDark">@color/DRD</item>
+        <item name="colorAccent">@color/WH</item>
+        <item name="android:windowBackground">@color/WH</item>
+    </style>
+
+    <!-- TextView styles -->
+    <style name="ReportHeader" parent="B1">
+        <item name="android:textColor">@color/DGR</item>
+    </style>
+
+    <style name="StatusTitle" parent="A2">
+        <item name="android:textColor">@color/status_text_color</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="StatusBody" parent="B1">
+        <item name="android:textColor">@color/GR</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="StoaTitle" parent="B1">
+        <item name="android:textColor">@color/GR</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">16dp</item>
+    </style>
+
+    <style name="StoaBody" parent="B1">
+        <item name="android:textColor">@color/status_text_color</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4dp</item>
+    </style>
+
+</resources>

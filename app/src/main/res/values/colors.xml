@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="BL">#000000</color>
+    <color name="DGR">#666666</color>
+    <color name="GR">#999999</color>
+    <color name="LGR">#D8D8DF</color>
+    <color name="WHGR">#F1F1F1</color>
+    <color name="WH">#FFFFFF</color>
+    <color name="RD">#E51937</color>
+    <color name="DRD">#AD1126</color>
+    <color name="PN">#FF798D</color>
+    <color name="LPN">#FFDCE2</color>
+    <color name="GRE">#12E06E</color>
+</resources>

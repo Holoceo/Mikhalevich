@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Михалевич</string>
+    <string name="insurance_case_status">Статус страхового случая</string>
+    <string name="adress">Адрес:</string>
+    <string name="service_hours">Режим работы:</string>
+    <string name="phone">Телефон</string>
+</resources>

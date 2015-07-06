@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/icon_section_width"
+    android:paddingTop="@dimen/status_item_padding_top"
+    android:paddingRight="@dimen/status_item_padding_right"
+    android:paddingBottom="@dimen/status_item_padding_bottom"
+    android:background="@drawable/selectable_background">
+
+
+    <net.kianoni.fontloader.TextView
+        android:id="@+id/tv_title"
+        style="@style/StatusTitle"/>
+
+    <net.kianoni.fontloader.TextView
+        android:id="@+id/tv_description"
+        android:layout_marginTop="4dp"
+        style="@style/StatusBody"/>
+
+    <net.kianoni.fontloader.TextView
+        android:id="@+id/tv_date"
+        android:layout_marginTop="8dp"
+        style="@style/StatusBody"/>
+
+</LinearLayout>

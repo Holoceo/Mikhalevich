@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:font="http://schemas.android.com/res/net.kianoni.fontloader">
+
+    <!-- Typefaces -->
+    <style name="KievitPro">
+        <item name="fontFilePattern">fonts/{fontFamily}-{fontVariant}.otf</item>
+        <item name="fontFamily">KievitPro</item>
+        <item name="fontVariant">Regular</item>
+    </style>
+
+    <style name="KievitPro.Bold" parent="KievitPro">
+        <item name="fontVariant">Bold</item>
+    </style>
+
+    <style name="KievitPro.Boldltalic" parent="KievitPro">
+        <item name="fontVariant">Boldltalic</item>
+    </style>
+
+    <style name="KievitPro.Book" parent="KievitPro">
+        <item name="fontVariant">Book</item>
+    </style>
+
+    <style name="KievitPro.Italic" parent="KievitPro">
+        <item name="fontVariant">Italic</item>
+    </style>
+
+    <!-- Text styles. -->
+    <style name="A1" parent="KievitPro">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="A2" parent="KievitPro">
+        <item name="android:textSize">19sp</item>
+    </style>
+
+    <style name="A3" parent="KievitPro.Bold">
+        <item name="android:textSize">19sp</item>
+    </style>
+
+    <style name="B1" parent="KievitPro">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="B2" parent="KievitPro">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="B3" parent="KievitPro">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Tab" parent="KievitPro.Book">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="BTN" parent="KievitPro.Book">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+</resources>
