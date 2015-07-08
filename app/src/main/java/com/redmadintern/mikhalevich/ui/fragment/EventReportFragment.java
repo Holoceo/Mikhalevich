@@ -48,8 +48,9 @@ public class EventReportFragment extends DialogFragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_event_report, container, false);
+        ScrollView root = (ScrollView)inflater.inflate(R.layout.fragment_event_report, container, false);
         reportView = (EventReportView)root.findViewById(R.id.v_report);
+        reportView.bindScrollView(root);
         return root;
     }
 

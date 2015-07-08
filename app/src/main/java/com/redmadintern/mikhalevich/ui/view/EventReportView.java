@@ -1,5 +1,7 @@
 package com.redmadintern.mikhalevich.ui.view;
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -17,8 +19,10 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.redmadintern.mikhalevich.R;
@@ -70,8 +74,13 @@ public class EventReportView extends LinearLayout implements View.OnClickListene
     private Bitmap bmpMap;
     private Bitmap bmpCall;
     private float titleTextSize;
-
+    private boolean animate = true;
     private int animatedRadius = 0;
+
+    private boolean isNewCircleAvaliable = false;
+    private int newCircleRadius = 0;
+
+    private ScrollView scrollView;
 
     public EventReportView(Context context) {
         super(context);TextView textView;
@@ -240,11 +249,23 @@ public class EventReportView extends LinearLayout implements View.OnClickListene
     }
 
     private void drawCircles(Canvas canvas) {
-        for (RelatedPoint point : circles) {
-            EventStatus eventStatus = statuses.get(point.statusPosition);
-            Paint paint = eventStatus.isPassed() ? paintCircleEnabled : paintCircle;
-            canvas.drawCircle(point.x, point.y, animatedRadius, paint);
+        int maxIndex = circles.size() - 1;
+
+        for (int i = 0; i < maxIndex; i++) {
+            drawCircle(canvas, i, animatedRadius);
         }
+
+        if (isNewCircleAvaliable)
+            drawCircle(canvas, maxIndex, newCircleRadius);
+        else
+            drawCircle(canvas, maxIndex, animatedRadius);
+    }
+
+    private void drawCircle(Canvas canvas,int position, int radius) {
+        RelatedPoint point = circles.get(position);
+        EventStatus eventStatus = statuses.get(point.statusPosition);
+        Paint paint = eventStatus.isPassed() ? paintCircleEnabled : paintCircle;
+        canvas.drawCircle(point.x, point.y, radius, paint);
     }
 
     private void drawPhoneIcons(Canvas canvas) {
@@ -264,23 +285,63 @@ public class EventReportView extends LinearLayout implements View.OnClickListene
     }
 
     private void startAnimation() {
+        if (!animate)
+            return;
+
+        animate = false;
         ValueAnimator valueAnimator = ValueAnimator.ofInt(0, circleRadius);
         valueAnimator.setDuration(ANIM_DURATION);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                animatedRadius = (Integer)animation.getAnimatedValue();
+                animatedRadius = (Integer) animation.getAnimatedValue();
                 invalidate();
             }
+
         });
         valueAnimator.start();
     }
 
     //-------------------------------Data-----------------------------------------------------------
 
+    public void bindScrollView(ScrollView scrollView) {
+        this.scrollView = scrollView;
+    }
+
     public void addEventStatus(EventStatus status) {
         statuses.add(status);
-        addEventStatus(statuses.size()-1);
+        addEventStatus(statuses.size() - 1);
+
+        final View recent = getChildAt(getChildCount()-1);
+        ViewTreeObserver viewTreeObserver = recent.getViewTreeObserver();
+        viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                ObjectAnimator yTranslate = ObjectAnimator.ofInt(scrollView, "scrollY", getBottom());
+                yTranslate.setDuration(ANIM_DURATION);
+
+                isNewCircleAvaliable = true;
+                ValueAnimator valueAnimator = ValueAnimator.ofInt(0, circleRadius);
+                valueAnimator.setDuration(ANIM_DURATION);
+                valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                        newCircleRadius = (Integer) animation.getAnimatedValue();
+                        invalidate();
+                    }
+                });
+
+                yTranslate.start();
+                valueAnimator.start();
+            }
+        });
+        /*viewTreeObserver.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                recent.getViewTreeObserver().removeOnPreDrawListener(this);
+                return false;
+            }
+        });*/
     }
 
     private void addEventStatus(int pos) {
